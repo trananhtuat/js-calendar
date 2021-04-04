@@ -90,3 +90,41 @@ dark_mode_toggle.onclick = () => {
     document.querySelector('body').classList.toggle('light')
     document.querySelector('body').classList.toggle('dark')
 }
+
+//get Time
+
+var getTime = setInterval(function() {
+
+    var now = new Date();
+
+    var hours =now.getDate();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var AP;
+
+    if(hours%12!==0)
+    {
+        AP = 12>hours;
+        hours = hours % 12;
+    }
+    else
+    {
+        AP=hours/12==2;
+        hours= AP?0:12;
+    }
+
+    if(10>hours)
+        hours="0"+hours;
+    if(10>minutes)
+        minutes="0"+minutes;
+    if(10>seconds)
+        seconds="0"+seconds;
+
+    document.getElementById("hours").innerHTML = hours + " : ";
+    document.getElementById("mins").innerHTML =  minutes + " : ";
+    document.getElementById("secs").innerHTML = seconds+" ";
+    if(AP)
+        document.getElementById("ap").innerHTML = "AM";
+    else
+        document.getElementById("ap").innerHTML = "PM";
+}, 1000);

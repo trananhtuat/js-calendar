@@ -58,7 +58,10 @@ body {
     padding: 20px;
     position: relative;
     overflow: hidden;
-    /* transform: scale(1.25); */
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
 }
 
 .light .calendar {
@@ -109,7 +112,7 @@ body {
     position: relative;
     cursor: pointer;
     animation: to-top 1s forwards;
-    /* border-radius: 50%; */
+    -webkit-animation: to-top 1s forwards;
 }
 
 .calendar-days div span {
@@ -118,6 +121,10 @@ body {
 
 .calendar-days div:hover span {
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    -moz-transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    -ms-transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    -o-transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
 }
 
 .calendar-days div span:nth-child(1),
@@ -181,6 +188,10 @@ body {
     background-color: var(--blue);
     color: var(--white);
     border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .calendar-days div.curr-date span {
@@ -191,6 +202,10 @@ body {
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .month-picker:hover {
@@ -210,6 +225,10 @@ body {
     place-items: center;
     margin: 0 10px;
     cursor: pointer;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .year-change:hover {
@@ -219,7 +238,7 @@ body {
 .calendar-footer {
     padding: 10px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -239,6 +258,10 @@ body {
     border-radius: 14px;
     background-color: var(--bg-second);
     cursor: pointer;
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    -ms-border-radius: 14px;
+    -o-border-radius: 14px;
 }
 
 .dark-mode-switch-ident {
@@ -250,6 +273,14 @@ body {
     top: 2px;
     left: 2px;
     transition: left 0.2s ease-in-out;
+    -webkit-transition: left 0.2s ease-in-out;
+    -moz-transition: left 0.2s ease-in-out;
+    -ms-transition: left 0.2s ease-in-out;
+    -o-transition: left 0.2s ease-in-out;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .dark .dark-mode-switch .dark-mode-switch-ident {
@@ -271,6 +302,10 @@ body {
     transform: scale(1.5);
     visibility: hidden;
     pointer-events: none;
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
 }
 
 .month-list.show {
@@ -278,6 +313,14 @@ body {
     visibility: visible;
     pointer-events: visible;
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
 }
 
 .month-list > div {
@@ -292,6 +335,10 @@ body {
     text-align: center;
     cursor: pointer;
     color: var(--color-txt);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .month-list > div > div:hover {
@@ -302,9 +349,42 @@ body {
     0% {
         transform: translateY(100%);
         opacity: 0;
-    }
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        -o-transform: translateY(100%);
+}
     100% {
         transform: translateY(0);
         opacity: 1;
-    }
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+}
+}
+
+/* Time */
+
+
+.time{
+    color: var(--color-txt);
+    animation: to-top 1s forwards;
+    -webkit-animation: to-top 1s forwards;
+}
+
+#hours{
+    display: inline-block;
+}
+
+#mins{
+    display: inline-block;
+}
+
+#secs{
+    display: inline-block;
+}
+
+#ap{
+    display: inline-block;
 }
