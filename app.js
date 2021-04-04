@@ -20,8 +20,8 @@ generateCalendar = (month, year) => {
     calendar_days.innerHTML = ''
 
     let currDate = new Date()
-    if (!month) month = currDate.getMonth()
-    if (!year) year = currDate.getFullYear()
+    // if (!month) month = currDate.getMonth()
+    // if (!year) year = currDate.getFullYear()
 
     let curr_month = `${month_names[month]}`
     month_picker.innerHTML = curr_month
