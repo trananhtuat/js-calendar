@@ -1,6 +1,7 @@
 let calendar = document.querySelector('.calendar')
 
 const month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const year_names = []
 
 isLeapYear = (year) => {
     return (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) || (year % 100 === 0 && year % 400 ===0)
@@ -61,10 +62,63 @@ month_names.forEach((e, index) => {
     month_list.appendChild(month)
 })
 
+let year_list = calendar.querySelector('.year-list')
+
+/*year_names.forEach((e, index) => {
+	console.log(index)
+    let year = document.createElement('div')
+    year.innerHTML = `<div data-year="${index}">${e}</div>`
+    year.querySelector('div').onclick = () => {
+        year_list.classList.remove('show')
+        curr_year.value = index
+        generateCalendar(index, curr_year.value)
+    }
+    year_list.appendChild(yaer)
+})*/
+
+let genrateYearList = () => {
+	let value = parseInt(calendar.querySelector('#year').innerHTML)
+	let year;
+	year_list.innerHTML = ""
+	year = document.createElement('div')
+	year.innerHTML = '<span class="year-change" id="prev-year"><pre>&lt;</pre></span>'
+	year_list.appendChild(year)
+	year = document.createElement('div')
+	year.innerHTML = '<span class="year-change" id="exit-year"><pre>&#x292B;</pre></span>'
+	year_list.appendChild(year)
+	year.onclick = () =>{
+		year_list.classList.remove('show')
+		year_list.classList.add('exit')
+	}
+	year = document.createElement('div')
+	year.innerHTML = '<span class="year-change" id="next-year"><pre>&gt;</pre></span>'
+	year_list.appendChild(year)
+	for(var i=5;i>=0;i--)
+	{
+		year = document.createElement('div')
+		year.innerHTML = `<div data-year="${value-i}">${value-i}</div>`
+		year_list.appendChild(year)
+	}
+	for(var i=1;i<7;i++)
+	{
+		year = document.createElement('div')
+		year.innerHTML = `<div data-year="${value+i}">${value+i}</div>`
+		year_list.appendChild(year)
+	}
+
+	year_list.classList.add('show')
+	year_list.classList.remove('exit')
+}
+
 let month_picker = calendar.querySelector('#month-picker')
+let year_picker = calendar.querySelector('#year')
 
 month_picker.onclick = () => {
     month_list.classList.add('show')
+}
+
+year_picker.onclick = () => {
+	genrateYearList()
 }
 
 let currDate = new Date()
