@@ -1,7 +1,4 @@
-let userName;
-
-(async () => {
-
+let getName = async () => {
     const { value: Name } = await Swal.fire({
       title: 'Enter your Name',
       input: 'text',
@@ -19,13 +16,18 @@ let userName;
     if (Name) {
       Swal.fire({
         title: "Thank You!",
-        text: `You Name is ${Name}`,
+        text: `Your Name is ${Name}`,
         icon: "success",
-    })
-    userName = name;
+    });
     }
     
-})()
+	return Name;
+}
 
-
-    console.log(userName)
+getName().then(
+	(data)=>{
+		let node = document.createElement('DIV');
+		node.classList.add('userName');
+		node.innerHTML = `Welcome ${data}`;
+		document.querySelector('body').insertBefore(node,document.querySelector('body').childNodes[0]);
+	})
