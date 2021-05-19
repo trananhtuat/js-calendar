@@ -1,3 +1,8 @@
+
+let currDate = new Date()
+
+let curr_month = {value: currDate.getMonth()}
+let curr_year = {value: currDate.getFullYear()}
 let calendar = document.querySelector('.calendar')
 
 const month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -29,7 +34,7 @@ generateCalendar = (month, year) => {
     calendar_header_year.innerHTML = year
 
     // get first day of month
-    
+
     let first_day = new Date(year, month, 1)
 
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
@@ -51,58 +56,76 @@ generateCalendar = (month, year) => {
 
 let month_list = calendar.querySelector('.month-list')
 
-month_names.forEach((e, index) => {
-    let month = document.createElement('div')
-    month.innerHTML = `<div data-month="${index}">${e}</div>`
-    month.querySelector('div').onclick = () => {
-        month_list.classList.remove('show')
-        curr_month.value = index
-        generateCalendar(index, curr_year.value)
-    }
+let genrateMonthList = () =>{
+    let month;
+    month_list.innerHTML = ''
+    month = document.createElement('DIV')
+    month.style.cssText = 'grid-column: 1 / 4;cursor: pointer; font-weight: 600; color: var(--color-txt)'
+
+	month.innerHTML = '<span class="month-change" id="exit-month"><pre>&#x292B;</pre></span>'
     month_list.appendChild(month)
-})
+	month.onclick = () =>{
+		month_list.classList.remove('show')
+		month_list.classList.add('exit')
+	}
+    month_names.forEach((e, index) => {
+        let month = document.createElement('div')
+        month.innerHTML = `<div data-month="${index}">${e}</div>`
+        month.querySelector('div').onclick = () => {
+            month_list.classList.remove('show')
+            curr_month.value = index
+            generateCalendar(index, curr_year.value)
+        }
+        month_list.appendChild(month)
+    })
+}
 
 let year_list = calendar.querySelector('.year-list')
 
-/*year_names.forEach((e, index) => {
-	console.log(index)
-    let year = document.createElement('div')
-    year.innerHTML = `<div data-year="${index}">${e}</div>`
-    year.querySelector('div').onclick = () => {
-        year_list.classList.remove('show')
-        curr_year.value = index
-        generateCalendar(index, curr_year.value)
-    }
-    year_list.appendChild(yaer)
-})*/
-
-let genrateYearList = () => {
-	let value = parseInt(calendar.querySelector('#year').innerHTML)
+let genrateYearList = (value) => {
 	let year;
 	year_list.innerHTML = ""
 	year = document.createElement('div')
-	year.innerHTML = '<span class="year-change" id="prev-year"><pre>&lt;</pre></span>'
+    year.innerHTML = '<span class="year-change" id="prev-year" style="font-weight: 600"><pre>&lt;</pre></span>'
+    year.onclick = () =>{
+        genrateYearList(parseInt(document.querySelector('.year-list').childNodes[document.querySelector('.year-list').childNodes.length-1].childNodes[0].innerText)-18);
+    }
 	year_list.appendChild(year)
 	year = document.createElement('div')
-	year.innerHTML = '<span class="year-change" id="exit-year"><pre>&#x292B;</pre></span>'
+    year.innerHTML = '<span class="year-change" id="exit-year" style="font-weight: 600"><pre>&#x292B;</pre></span>'
 	year_list.appendChild(year)
 	year.onclick = () =>{
 		year_list.classList.remove('show')
 		year_list.classList.add('exit')
 	}
 	year = document.createElement('div')
-	year.innerHTML = '<span class="year-change" id="next-year"><pre>&gt;</pre></span>'
+    year.innerHTML = '<span class="year-change" id="next-year" style="font-weight: 600"><pre>&gt;</pre></span>'
+    year.onclick = () =>{
+        genrateYearList(parseInt(document.querySelector('.year-list').childNodes[document.querySelector('.year-list').childNodes.length-1].childNodes[0].innerText)+6);
+    }
 	year_list.appendChild(year)
 	for(var i=5;i>=0;i--)
 	{
 		year = document.createElement('div')
-		year.innerHTML = `<div data-year="${value-i}">${value-i}</div>`
+        year.innerHTML = `<div data-year="${value-i}">${value-i}</div>`
+        year.onclick = (e) =>{
+            curr_year.value = parseInt(e.target.innerText)
+            generateCalendar(month_names.indexOf(document.querySelector('.month-picker').innerText),parseInt(e.target.innerText))
+            year_list.classList.remove('show')
+            year_list.classList.add('exit')
+        }
 		year_list.appendChild(year)
 	}
 	for(var i=1;i<7;i++)
 	{
 		year = document.createElement('div')
-		year.innerHTML = `<div data-year="${value+i}">${value+i}</div>`
+        year.innerHTML = `<div data-year="${value+i}">${value+i}</div>`
+        year.onclick = (e) =>{
+            curr_year.value = parseInt(e.target.innerText)
+            generateCalendar(month_names.indexOf(document.querySelector('.month-picker').innerText),parseInt(e.target.innerText))
+            year_list.classList.remove('show')
+            year_list.classList.add('exit')
+        }
 		year_list.appendChild(year)
 	}
 
@@ -114,17 +137,16 @@ let month_picker = calendar.querySelector('#month-picker')
 let year_picker = calendar.querySelector('#year')
 
 month_picker.onclick = () => {
+    genrateMonthList()
     month_list.classList.add('show')
+    month_list.classList.remove('exit')
 }
 
 year_picker.onclick = () => {
-	genrateYearList()
+	genrateYearList(parseInt(calendar.querySelector('#year').innerHTML))
 }
 
-let currDate = new Date()
 
-let curr_month = {value: currDate.getMonth()}
-let curr_year = {value: currDate.getFullYear()}
 
 generateCalendar(curr_month.value, curr_year.value)
 

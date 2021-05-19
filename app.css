@@ -12,6 +12,7 @@
     --light-text: #151426;
 
     --blue: #0000ff;
+    --dark-blue: #009;
     --white: #fff;
 
     --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -183,9 +184,24 @@ body {
     transition-delay: 0.6s;
 }
 
-.calendar-days div.curr-date,
-.calendar-days div.curr-date:hover {
+.calendar-days div.curr-date{
     background-color: var(--blue);
+    color: var(--white);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+
+.calendar-days div.curr-date:hover {
+    background-color: var(--dark-blue);
     color: var(--white);
     border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -383,7 +399,7 @@ body {
     -o-transform: scale(1.5);
 }
 
-.year-list.show {
+.show {
     transform: scale(1);
     visibility: visible;
     pointer-events: visible;
@@ -398,7 +414,7 @@ body {
     -o-transform: scale(1);
 }
 
-.year-list.exit {
+.exit {
     transform: scale(0);
     visibility: collapse;
     pointer-events: none;
