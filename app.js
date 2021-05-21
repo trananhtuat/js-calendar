@@ -35,19 +35,30 @@ generateCalendar = (month, year) => {
     // get first day of month
 
     let first_day = new Date(year, month, 1);
-
-    for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
+	
+	// console.log(days_of_month[month] + first_day.getDay() - 1);
+	let i,f=true;
+    for (i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
         let day = document.createElement('div');
+		/*if(i%7===0 && f)
+		{
+			day.innerHTML = "I";
+			f=false;
+			i--;
+		}*/
         if (i >= first_day.getDay()) {
             day.classList.add('calendar-day-hover');
+			f=true;
             day.innerHTML = i - first_day.getDay() + 1;
             day.innerHTML += `<span></span><span></span><span></span><span></span>`;
             if (i - first_day.getDay() + 1 === currDate.getDate() && year === currDate.getFullYear() && month === currDate.getMonth()) {
                 day.classList.add('curr-date');
             }
         }
+		console.log(i,i-first_day.getDay()+1)
         calendar_days.appendChild(day);
     }
+	//console.log(i)
 }
 
 let month_list = calendar.querySelector('.month-list');
@@ -147,13 +158,11 @@ year_picker.onclick = () => {
 generateCalendar(curr_month.value, curr_year.value);
 
 document.querySelector('#prev-year').onclick = () => {
-    --curr_year.value;
-    generateCalendar(curr_month.value, curr_year.value);
+    generateCalendar(month_names.indexOf(document.querySelector('.month-picker').innerText),parseInt(document.querySelector("#year").innerText)-1);
 }
 
 document.querySelector('#next-year').onclick = () => {
-    ++curr_year.value;
-    generateCalendar(curr_month.value, curr_year.value);
+    generateCalendar(month_names.indexOf(document.querySelector('.month-picker').innerText),parseInt(document.querySelector("#year").innerText)+1);
 }
 
 let dark_mode_toggle = document.querySelector('.dark-mode-switch');
@@ -200,3 +209,11 @@ var getTime = setInterval(function() {
     else
         document.getElementById("ap").innerHTML = "PM";
 }, 1000);
+
+
+/* Jump to Date */
+
+document.querySelector('.jump i').onclick = () => {
+	let now = new Date();
+	generateCalendar(now.getMonth(),now.getFullYear());
+}

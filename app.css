@@ -481,6 +481,12 @@ body {
     box-shadow: var(--shadow);
 }
 
+.jump{
+	color: var(--color-txt);
+	cursor: pointer;
+}
+
+
 .light,.dark{
 	grid-row-gap: 23px;
     margin-top: 20px;
