@@ -37,28 +37,27 @@ generateCalendar = (month, year) => {
     let first_day = new Date(year, month, 1);
 	
 	// console.log(days_of_month[month] + first_day.getDay() - 1);
-	let i,f=true;
+	let i,f=0;
     for (i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
         let day = document.createElement('div');
-		/*if(i%7===0 && f)
+		if((i)%7===0)
 		{
-			day.innerHTML = "I";
-			f=false;
-			i--;
-		}*/
+			let day = document.createElement('div');
+			day.innerHTML = f+"I";
+			calendar_days.appendChild(day);
+			console.log(f);
+			f++;
+		}
         if (i >= first_day.getDay()) {
             day.classList.add('calendar-day-hover');
-			f=true;
             day.innerHTML = i - first_day.getDay() + 1;
             day.innerHTML += `<span></span><span></span><span></span><span></span>`;
             if (i - first_day.getDay() + 1 === currDate.getDate() && year === currDate.getFullYear() && month === currDate.getMonth()) {
                 day.classList.add('curr-date');
             }
         }
-		console.log(i,i-first_day.getDay()+1)
         calendar_days.appendChild(day);
     }
-	//console.log(i)
 }
 
 let month_list = calendar.querySelector('.month-list');

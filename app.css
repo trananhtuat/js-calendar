@@ -86,7 +86,7 @@ body {
 .calendar-week-day {
     height: 50px;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     font-weight: 600;
 }
 
@@ -98,7 +98,7 @@ body {
 
 .calendar-days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 2px;
     color: var(--color-txt);
 }
