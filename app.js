@@ -1,4 +1,18 @@
 let currDate = new Date();
+let prev=-1,curr;
+
+let getWeek = (calendar_days,day,month,year) => {
+	let now = new Date(year,month,day);
+	let onejan = new Date(now.getFullYear(), 0, 1);
+	let Week = Math.ceil((((now.getTime() - onejan.getTime()) / 86400000) + onejan.getDay() + 1) / 7);
+
+	curr=Week;
+	if(curr!=prev)
+	{
+		calendar_days.childNodes[calendar_days.childNodes.length-now.getDay()-1].innerHTML = Week;
+		prev=curr;
+	}
+}
 
 let curr_month = {value: currDate.getMonth()};
 let curr_year = {value: currDate.getFullYear()};
@@ -43,9 +57,8 @@ generateCalendar = (month, year) => {
 		if((i)%7===0)
 		{
 			let day = document.createElement('div');
-			day.innerHTML = f+"I";
+			day.classList.add("week-no");
 			calendar_days.appendChild(day);
-			console.log(f);
 			f++;
 		}
         if (i >= first_day.getDay()) {
@@ -55,9 +68,12 @@ generateCalendar = (month, year) => {
             if (i - first_day.getDay() + 1 === currDate.getDate() && year === currDate.getFullYear() && month === currDate.getMonth()) {
                 day.classList.add('curr-date');
             }
+			getWeek(calendar_days,parseInt(day.childNodes[0].data),month,year);
         }
         calendar_days.appendChild(day);
     }
+	
+	prev=-1;
 }
 
 let month_list = calendar.querySelector('.month-list');
