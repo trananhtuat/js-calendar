@@ -7,11 +7,12 @@
     <title>
         Calendar
     </title>
+	<link rel="shortcut icon" href="short.png">
     <link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" />
 </head>
 
 <body class="light">
-
     <div class="calendar">
         <div class="calendar-header">
             <span class="month-picker" id="month-picker">February</span>
@@ -27,6 +28,7 @@
         </div>
         <div class="calendar-body">
             <div class="calendar-week-day">
+				<div>Week</div>
                 <div>Sun</div>
                 <div>Mon</div>
                 <div>Tue</div>
@@ -38,6 +40,15 @@
             <div class="calendar-days"></div>
         </div>
         <div class="calendar-footer">
+            <div class="time">
+                <div id="hours"></div>
+                <div id="mins"></div>
+                <div id="secs"></div>
+                <div id="ap"></div>
+            </div>
+			<div class="jump">
+				<i class="fal fa-calendar-star" title="Jump to Current Date"></i>
+			</div>
             <div class="toggle">
                 <span>Dark Mode</span>
                 <div class="dark-mode-switch">
@@ -46,8 +57,11 @@
             </div>
         </div>
         <div class="month-list"></div>
+		<div class="year-list"></div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--<script src="takeName.js"></script>-->
     <script src="app.js"></script>
 </body>
 
