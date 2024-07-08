@@ -20,7 +20,10 @@ generateCalendar = (month, year) => {
     calendar_days.innerHTML = ''
 
     let currDate = new Date()
-    if (!month) month = currDate.getMonth()
+    if (month === undefined || month === null) {
+        month = currDate.getMonth();
+        year = currDate.getFullYear();
+    }
     if (!year) year = currDate.getFullYear()
 
     let curr_month = `${month_names[month]}`
